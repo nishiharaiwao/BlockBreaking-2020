@@ -10,8 +10,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         this.GetComponent<Rigidbody>().AddForce(
-            (transform.forward + transform.right) * speed,
-            ForceMode.VelocityChange);
+            (transform.forward + transform.right) * speed,ForceMode.VelocityChange);
     }
 
     // Update is called once per frame
@@ -25,6 +24,8 @@ public class Ball : MonoBehaviour
         string yourTag = collision.gameObject.tag;
         if (yourTag == "Block") {
             FindObjectOfType<ScoreManager>().ScoreUp(1);
+        } else if (yourTag == "BottomWall") {
+            FindObjectOfType<ScoreManager>().LessPlayers();
         }
     }
 }
